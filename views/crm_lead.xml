@@ -1,0 +1,33 @@
+<odoo>
+
+    <record id="partner_required_crm_lead_view_form" model="ir.ui.view">
+        <field name="inherit_id" ref="crm.crm_lead_view_form"/>
+        <field name="name">partner.required.crm.lead.view.form</field>
+        <field name="model">crm.lead</field>
+        <field name="arch" type="xml">
+            <xpath expr="//form[1]/sheet[1]/group[1]/group[1]/field[@name='partner_id']"
+                   position="attributes">
+                <attribute name="attrs">{"required":[["type","=","opportunity"]]}</attribute>
+            </xpath>
+            <xpath expr="//form[1]/sheet[1]/group[1]/group[2]/field[@name='partner_id']"
+                   position="attributes">
+                <attribute name="attrs">{"required":[["type","=","opportunity"]]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="partner_required_quick_create_opportunity_form" model="ir.ui.view">
+        <field name="inherit_id" ref="crm.quick_create_opportunity_form"/>
+        <field name="model">crm.lead</field>
+        <field name="name">partner.required.quick.create.opportunity.form</field>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="before">
+                <field name="type" invisible="1"/>
+            </xpath>
+            <xpath expr="//field[@name='partner_id']" position="attributes">
+                <attribute name="attrs">{"required":[["type","=","opportunity"]]}</attribute>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
